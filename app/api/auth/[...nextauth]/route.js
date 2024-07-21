@@ -4,6 +4,11 @@ import GoogleProvider from 'next-auth/providers/google'
 import dbConnect from '@/lib/dbConnect'
 import User from '@/models/User'
 
+const generateUsername = (name) => {
+  const baseUsername = name.toLowerCase().replace(/\s+/g, '');
+  return `${baseUsername}${Math.floor(1000 + Math.random() * 9000)}`;
+};
+
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -16,24 +21,34 @@ export const authOptions = {
       if (account.provider === "google") {
         await dbConnect();
         
-        // Check if user exists
-        const existingUser = await User.findOne({ email: user.email });
+        let dbUser = await User.findOne({ email: user.email });
         
-        if (!existingUser) {
-          // If user doesn't exist, create a new one
-          await User.create({
+        if (!dbUser) {
+          const username = generateUsername(user.name);
+          dbUser = await User.create({
             name: user.name,
             email: user.email,
-            image: user.image
+            image: user.image,
+            username: username,
           });
         }
+        
+        user.id = dbUser._id;
+        user.username = dbUser.username;
         
         return true;
       }
       return false;
     },
+    async session({ session, user }) {
+      const dbUser = await User.findOne({ email: session.user.email });
+      if (dbUser) {
+        session.user.id = dbUser._id.toString();
+        session.user.username = dbUser.username;
+      }
+      return session;
+    },
   },
-  // Additional configuration options can go here
 }
 
 const handler = NextAuth(authOptions)

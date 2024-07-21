@@ -7,53 +7,47 @@ import Post from '@/models/Post';
 import User from '@/models/User';
 
 export async function POST(request) {
-  console.log('POST request received');
   const session = await getServerSession(authOptions);
   if (!session) {
-    console.log('No session found');
     return NextResponse.json({ error: 'Unauthenticated' }, { status: 401 });
   }
 
   await dbConnect();
 
   try {
-    const body = await request.json();
-    console.log('Request body:', body);
-    const { content } = body;
-    console.log('Content:', content);
+    const formData = await request.formData();
+    const content = formData.get('content');
+    const image = formData.get('image');
     
-    let user = await User.findOne({ email: session.user.email });
-    console.log('User found:', user);
-    
-    if (!user) {
-      // If user is not found, create a new one
-      user = await User.create({
-        name: session.user.name,
-        email: session.user.email,
-        image: session.user.image
-      });
-      console.log('New user created:', user);
+    let imageUrl = null;
+    if (image) {
+      // Here you would typically upload the image to a cloud storage service
+      // and get back a URL. For this example, we'll just use a placeholder.
+      imageUrl = '/api/placeholder/500/300';
     }
-    
-    const post = await Post.create({ content, author: user._id });
-    console.log('Post created:', post);
+
+    const user = await User.findOne({ email: session.user.email });
+    const post = await Post.create({ 
+      content, 
+      image: imageUrl, 
+      author: user._id 
+    });
+
     return NextResponse.json(post, { status: 201 });
   } catch (error) {
-    console.error('Error in POST:', error);
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 }
 
-export async function GET() {
-  console.log('GET request received');
+export async function GET(request) {
   await dbConnect();
 
   try {
-    const posts = await Post.find({}).sort({ createdAt: -1 }).populate('author', 'name image');
-    console.log('Posts fetched:', posts);
+    const posts = await Post.find({})
+      .sort({ createdAt: -1 })
+      .populate('author', 'name username image');
     return NextResponse.json(posts);
   } catch (error) {
-    console.error('Error in GET:', error);
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 }
