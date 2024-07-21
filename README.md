@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# subu
 
-## Getting Started
+**a place where women can share and celebrate all wins, big or small, and cheer each other on!**
 
-First, run the development server:
+This project was built during the [EmpowHer Hacks Hackathon](https://empowher-hacks.devpost.com).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Subu](https://github.com/user-attachments/assets/fc4d46a6-0c01-49d0-a31c-13d384be9837)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Setup Locally
+1. Create a `.env` file in the project folder and add environment variables from `.env.example`.
+2. Run `npm install` followed by `npm run dev`.
+3. Open [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+**How We Built It**
+- Used Next.js, Tailwind CSS, and MongoDB
 
-To learn more about Next.js, take a look at the following resources:
+**Challenges We Faced**
+- Effectively integrating various technologies.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Accomplishments We're Proud Of**
+- Developed a user-friendly platform.
+- Created a visually appealing site that fosters community support.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Lessons Learned**
+- Mastered effective integration of technology to ensure a smooth user experience.
 
-## Deploy on Vercel
+**What’s Next for Subu**
+- Expand features to enhance user engagement.
+- Continue to grow and support the community.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We are continuously working on improving Subu and making it even better.
