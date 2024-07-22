@@ -1,8 +1,10 @@
 # subu
 
-**a place where women can share and celebrate all wins, big or small, and cheer each other on!**
+**Share your progress, inspire other women!**
 
-This project was built during the [EmpowHer Hacks Hackathon](https://empowher-hacks.devpost.com).
+a place where women can share and celebrate all wins, big or small, and cheer each other on!
+
+> This project was built during the [EmpowHer Hacks Hackathon](https://devpost.com/software/subu)
 
 ![Subu](https://github.com/user-attachments/assets/fc4d46a6-0c01-49d0-a31c-13d384be9837)
 

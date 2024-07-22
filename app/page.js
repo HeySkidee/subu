@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-white to-indigo-100 flex items-center justify-center pb-10">
       <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
         <div className="text-center">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-900 mb-6">
