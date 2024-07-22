@@ -12,7 +12,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-indigo-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-indigo-100 px-4 pb-16">
       <div className="w-full max-w-sm bg-white shadow-md rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">
           Sign In

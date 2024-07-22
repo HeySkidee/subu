@@ -4,7 +4,7 @@
 
 a place where women can share and celebrate all wins, big or small, and cheer each other on!
 
-> This project was built during the [EmpowHer Hacks Hackathon](https://devpost.com/software/subu)
+> This project was built during the [EmpowHer Hacks Hackathon](https://devpost.com/software/subu) and secured [third position](https://files.catbox.moe/6pwfm6.png)!
 
 ![Subu](https://github.com/user-attachments/assets/fc4d46a6-0c01-49d0-a31c-13d384be9837)
 
