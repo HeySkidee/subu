@@ -8,7 +8,11 @@ const Login = () => {
   const { status } = useSession();
 
   if (status === "loading") {
-    return <p className="text-center text-gray-600">Loading...</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-indigo-100 px-4 pb-16">
+        <p className="text-center text-gray-600 text-2xl">Loading...</p>
+      </div>
+    );
   }
 
   return (
