@@ -23,16 +23,16 @@ const HomePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('content', newPost);
+    formData.append("content", newPost);
     if (image) {
-      formData.append('image', image);
+      formData.append("image", image);
     }
-    
+
     const res = await fetch("/api/posts", {
       method: "POST",
       body: formData,
     });
-    
+
     if (res.ok) {
       setNewPost("");
       setImage(null);
@@ -70,7 +70,10 @@ const HomePage = () => {
               onChange={handleImageChange}
               className="hidden"
             />
-            <button type="submit" className="ml-auto bg-indigo-600 text-white px-8 py-2 rounded hover:bg-indigo-700 transition-colors">
+            <button
+              type="submit"
+              className="ml-auto bg-indigo-600 text-white px-8 py-2 rounded hover:bg-indigo-700 transition-colors"
+            >
               Post
             </button>
           </div>
