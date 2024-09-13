@@ -2,7 +2,7 @@
 
 **Share your progress, inspire other women!**
 
-a place where women can share and celebrate all wins, big or small, and cheer each other on!
+a place where people of any gender(we sport gender inclusivity) can share and celebrate all wins, big or small, and cheer each other on!
 
 > This project was built during the [EmpowHer Hacks Hackathon](https://devpost.com/software/subu) and secured [third position](https://files.catbox.moe/6pwfm6.png)!
 
