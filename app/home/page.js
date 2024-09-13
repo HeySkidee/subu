@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Feed from "@/components/Feed";
 
 const HomePage = () => {
+	//oh maigotto its salmon kun
   const { data: session, status } = useSession();
   const router = useRouter();
   const [newPost, setNewPost] = useState("");
