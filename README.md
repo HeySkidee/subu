@@ -17,18 +17,8 @@ a place where women can share and celebrate all wins, big or small, and cheer ea
 
 ---
 
-**How We Built It**
-- Used Next.js, Tailwind CSS, and MongoDB
-
-**Challenges We Faced**
-- Effectively integrating various technologies.
-
-**Accomplishments We're Proud Of**
-- Developed a user-friendly platform.
-- Created a visually appealing site that fosters community support.
-
-**Lessons Learned**
-- Mastered effective integration of technology to ensure a smooth user experience.
+**Tech Stack**
+- [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Shadcn](https://ui.shadcn.com/), [PostgreSQL](https://www.postgresql.org/), [Prisma](https://www.prisma.io/), [Clerk](https://clerk.com/), and [Uploadthing](https://uploadthing.com/).
 
 **What’s Next for Subu**
 - Expand features to enhance user engagement.

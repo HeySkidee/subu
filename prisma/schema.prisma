@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  clerkId   String   @unique
+  name      String?
+  bio       String?
+  image     String?
+  location  String?
+  website   String?
+  createdAt DateTime @default(now()) // member since 2023
+  updatedAt DateTime @updatedAt
+
+  // Relations:
+  posts    Post[] // one-to-many
+  comments Comment[] // one-to-many
+  likes    Like[] // one-to-many
+
+  followers Follows[] @relation("following") // users who follows this user
+  following Follows[] @relation("follower") // users this user follows
+
+  notifications        Notification[] @relation("userNotifications") // notification reveieved by a user
+  notificationsCreated Notification[] @relation("notificationCreator") // notifications subsribed by the user
+}
+
+model Post {
+  id       String @id @default(cuid())
+  authorId String
+
+  content String?
+  image   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations
+  author        User           @relation(fields: [authorId], references: [id], onDelete: Cascade) // cascade = delete all posts if author is deleted
+  comments      Comment[]
+  likes         Like[]
+  notifications Notification[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  authorId  String
+  postId    String
+  createdAt DateTime @default(now())
+
+  // relations
+  author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post         Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  Notification Notification[]
+
+  @@index([authorId, postId]) // composite index for faster queries. it allows us to find the comment using combination of authorId and postId
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
+
+  // relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId]) // contraint to prevent same user to like twice
+  @@index([userId, postId]) // give me the like done by this user on this post:
+}
+
+// I don't understand this
+model Follows {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+
+  // Relations
+  follower  User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followingId]) // composite primary key prevents duplicate follows
+  @@index([followerId, followingId]) // composite index for faster queries
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String                  
+  creatorId String                  
+  type      NotificationType        
+  read      Boolean  @default(false)
+  postId    String?                 
+  commentId String?                
+  createdAt DateTime @default(now())
+  
+  // Relations
+  user      User     @relation("userNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  creator   User     @relation("notificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+enum NotificationType {
+  LIKE
+  COMMENT
+  FOLLOW
+}
